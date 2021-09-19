@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handi/search/search_gig_screen.dart';
 import 'home/home_screen.dart';
 import 'gigs/gigs_screen.dart';
 import 'profile/profile_screen.dart';
@@ -52,7 +53,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Account',
+            label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
@@ -62,4 +63,23 @@ class _BottomNavigationState extends State<BottomNavigation> {
       ),
     );
   }
+}
+
+Route _createRoute(label) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        Search(title: label),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }

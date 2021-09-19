@@ -25,11 +25,13 @@ const TextStyle p_primary = TextStyle(
   fontSize: 16,
 );
 
-TextStyle pScaled(double factor, bool primary) {
+/// Return font size of 16 * [factor].
+/// If [primary] is true, text color is the primary color of the app; black otherwise.
+TextStyle pScaled(double factor, bool? primary) {
   return TextStyle(
     fontWeight: FontWeight.normal,
     decoration: TextDecoration.none,
-    color: primary ? kPrimaryColor : Colors.black,
+    color: primary! ? kPrimaryColor : Colors.black,
     fontSize: 16 * factor,
   );
 }

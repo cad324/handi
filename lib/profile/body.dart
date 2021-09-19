@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:handi/constants.dart';
+import 'package:handi/profile/password/change_password_screen.dart';
 import '../components/clickable_list_item.dart';
+import 'package:handi/profile/account/account_screen.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -35,35 +37,35 @@ class Body extends StatelessWidget {
             shrinkWrap: true,
             children: <Widget>[
               ClickableListItem(
-                title: "Account",
-                leading: Icon(Icons.person),
-                trailing: Icon(Icons.arrow_right),
-              ),
+                  title: "Account",
+                  leading: Icon(Icons.person),
+                  trailing: Icon(Icons.chevron_right),
+                  page: Account()),
               ClickableListItem(
-                title: "Change Password",
-                leading: Icon(Icons.security),
-                trailing: Icon(Icons.arrow_right),
-              ),
+                  title: "Change Password",
+                  leading: Icon(Icons.security),
+                  trailing: Icon(Icons.chevron_right),
+                  page: ChangePassword()),
               ClickableListItem(
-                title: "Payment Settings",
-                leading: Icon(Icons.account_balance),
-                trailing: Icon(Icons.arrow_right),
-              ),
+                  title: "Payment Method",
+                  leading: Icon(Icons.account_balance),
+                  trailing: Icon(Icons.chevron_right),
+                  page: Account()),
               ClickableListItem(
-                title: "Notifications",
-                leading: Icon(Icons.notifications_active),
-                trailing: Icon(Icons.arrow_right),
-              ),
+                  title: "Notifications",
+                  leading: Icon(Icons.notifications_active),
+                  trailing: Icon(Icons.chevron_right),
+                  page: Account()),
               ClickableListItem(
-                title: "Register as a Gig Worker",
-                leading: Icon(Icons.handyman),
-              ),
+                  title: "Register as a Gig Worker",
+                  leading: Icon(Icons.handyman),
+                  page: Account()),
               ClickableListItem(
-                title: "Log Out",
-                margin: EdgeInsets.only(top: kDefaultPadding),
-                textStyle: TextStyle(color: Colors.red[300]),
-                leading: Icon(Icons.logout, color: Colors.red[300]),
-              ),
+                  title: "Log Out",
+                  margin: EdgeInsets.only(top: kDefaultPadding),
+                  textStyle: TextStyle(color: Colors.red[300]),
+                  leading: Icon(Icons.logout, color: Colors.red[300]),
+                  page: Account()),
             ],
           )
         ],

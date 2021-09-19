@@ -100,11 +100,9 @@ class _SearchState extends State<Search> {
   void initializeFlutterFire() async {
     try {
       await fireApp;
-      QuerySnapshot qSnap = await _gigs.get();
       setState(() {
         _initialized = true;
       });
-      print(qSnap.docs.map((doc) => doc.data).toList());
     } catch (e) {
       setState(() {
         _error = true;
@@ -325,7 +323,7 @@ class _SearchState extends State<Search> {
                           thickness: 1,
                         ),
                       ),
-                      Text("Sorted by: Recommeded", style: p),
+                      Text("Sorted by: Recommended", style: p),
                       Expanded(
                         child: Divider(
                           indent: kDefaultPadding / 2,
@@ -347,7 +345,13 @@ class _SearchState extends State<Search> {
             ),
           );
         }
-        return Text("Loading results...");
+        return Center(
+          child: SizedBox(
+            height: 100,
+            width: 100,
+            child: CircularProgressIndicator(color: kPrimaryColor),
+          ),
+        );
       },
     );
   }
