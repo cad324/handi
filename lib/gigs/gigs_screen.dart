@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import './body.dart';
 
-void main() => runApp(MaterialApp(
-      home: Gigs(),
-    ));
-
 class Gigs extends StatelessWidget {
   const Gigs({Key? key}) : super(key: key);
 

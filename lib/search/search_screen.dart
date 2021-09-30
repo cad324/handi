@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:handi/search/search_gig_screen.dart';
+import 'package:handi/components/gig_map.dart';
 import 'package:handi/styles/all.Style.dart';
-import '../constants.dart';
-
-void main() => runApp(MaterialApp(home: SearchScreen()));
+import 'package:handi/constants.dart';
 
 class SearchScreen extends StatefulWidget {
   SearchScreen({Key? key}) : super(key: key);
@@ -89,40 +87,40 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           children: <Widget>[
             if (_searchText.text == "")
-              new Column(
-                  children: kGigAssetMap.keys
-                      .map(
-                        (k) => GigMap(k: k),
-                      )
-                      .toList())
+              Expanded(
+                child: new Column(
+                    children: kGigAssetMap.keys
+                        .map(
+                          (k) => GigMap(k: k),
+                        )
+                        .toList()),
+              )
             else if (kGigAssetMap[_category] == null)
               Expanded(
                 child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("No results for \"${_searchText.text}\"", style: h3),
                       Container(
-                        margin:
-                            EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+                          margin: EdgeInsets.only(top: kDefaultPadding / 2),
+                          child: Text("No results for \"${_searchText.text}\"",
+                              style: h3)),
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: kDefaultPadding / 2,
+                            bottom: kDefaultPadding * 1.5),
                         child: Text(
                           "Try one of these most-searched for gigs",
                           textScaleFactor: 1.1,
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(top: kDefaultPadding * 1.5),
-                        child: Expanded(
-                          child: SingleChildScrollView(
-                            child: Column(
-                                children: kGigAssetMap.keys
-                                    .map(
-                                      (k) => GigMap(k: k),
-                                    )
-                                    .toList()),
-                          ),
-                        ),
-                      )
+                      Column(
+                          children: kGigAssetMap.keys
+                              .map(
+                                (k) => GigMap(k: k),
+                              )
+                              .toList()),
                     ],
                   ),
                 ),
@@ -166,36 +164,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   Column(
                       children: kGigAssetMap.keys
                           .where((k) => k != _category)
-                          .map(
-                            (k) => InkWell(
-                              onTap: () {
-                                Navigator.of(context).push(_createRoute(k));
-                              },
-                              child: Card(
-                                margin:
-                                    EdgeInsets.only(bottom: kDefaultPadding),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Image.asset(
-                                      kGigAssetMap[k]?["asset"],
-                                      width: 100,
-                                      cacheWidth: 100,
-                                    ),
-                                    Container(
-                                        margin: EdgeInsets.only(
-                                            top: kDefaultPadding / 2,
-                                            left: kDefaultPadding / 2),
-                                        child: Text(k,
-                                            textScaleFactor: 1.1,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                            )))
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )
+                          .map((k) => GigMap(k: k))
                           .toList())
                 ],
               ),
@@ -204,62 +173,4 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
-}
-
-class GigMap extends StatelessWidget {
-  const GigMap({
-    Key? key,
-    required this.k,
-  }) : super(key: key);
-
-  final String k;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).push(_createRoute(k));
-      },
-      child: Card(
-        margin: EdgeInsets.only(bottom: kDefaultPadding),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Image.asset(
-              kGigAssetMap[k]?["asset"],
-              width: 100,
-              cacheWidth: 100,
-            ),
-            Container(
-                margin: EdgeInsets.only(
-                    top: kDefaultPadding / 2, left: kDefaultPadding / 2),
-                child: Text(k,
-                    textScaleFactor: 1.1,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                    )))
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-Route _createRoute(label) {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) =>
-        Search(title: label),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
 }

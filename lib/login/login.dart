@@ -1,4 +1,3 @@
-// import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,7 +13,6 @@ const users = const {
 
 class Login extends StatelessWidget {
   Duration get loginTime => Duration(microseconds: 2250);
-
   Future<String> _authUser(LoginData data) {
     print('Name: ${data.name}, Password: ${data.password}');
     return Future.delayed(loginTime).then((_) {

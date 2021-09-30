@@ -7,7 +7,7 @@ class ClickableListItem extends StatelessWidget {
       this.textStyle,
       this.leading,
       this.trailing,
-      required this.page,
+      this.page,
       this.margin})
       : super(key: key);
 
@@ -16,13 +16,16 @@ class ClickableListItem extends StatelessWidget {
   final Icon? trailing;
   final TextStyle? textStyle;
   final EdgeInsetsGeometry? margin;
-  final Widget page;
+  final Widget? page;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+        if (page != null) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => page!));
+        }
       },
       child: Card(
         margin: margin ?? EdgeInsets.only(bottom: 1),

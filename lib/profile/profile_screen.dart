@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:handi/constants.dart';
 import 'body.dart';
 
-void main() => runApp(MaterialApp(home: Profile()));
-
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 

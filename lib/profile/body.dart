@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:handi/constants.dart';
+import 'package:handi/login/login.dart';
 import 'package:handi/profile/password/change_password_screen.dart';
+import 'package:handi/profile/payment/payment_method_screen.dart';
 import '../components/clickable_list_item.dart';
 import 'package:handi/profile/account/account_screen.dart';
 
@@ -50,7 +52,7 @@ class Body extends StatelessWidget {
                   title: "Payment Method",
                   leading: Icon(Icons.account_balance),
                   trailing: Icon(Icons.chevron_right),
-                  page: Account()),
+                  page: PaymentMethod()),
               ClickableListItem(
                   title: "Notifications",
                   leading: Icon(Icons.notifications_active),
@@ -65,7 +67,7 @@ class Body extends StatelessWidget {
                   margin: EdgeInsets.only(top: kDefaultPadding),
                   textStyle: TextStyle(color: Colors.red[300]),
                   leading: Icon(Icons.logout, color: Colors.red[300]),
-                  page: Account()),
+                  page: Login()),
             ],
           )
         ],

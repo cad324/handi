@@ -130,8 +130,6 @@ class _SearchState extends State<Search> {
           return Text("Oops. Something went wrong!");
         }
         if (snapshot.connectionState == ConnectionState.done) {
-          // List<Map<String, dynamic>> data =
-          //     snapshot.requireData.data() as List<Map<String, dynamic>>;
           return Container(
             child: Column(
               children: <Widget>[

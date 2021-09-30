@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handi/worker/worker_profile.dart';
 import '../constants.dart';
 
 class GigCard extends StatelessWidget {
@@ -12,10 +13,14 @@ class GigCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Card(
+    return Card(
         margin: EdgeInsets.symmetric(vertical: kDefaultPadding - 10),
         child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+                  builder: (context) =>
+                      WorkerProfile(workerData: item, title: title)));
+            },
             splashColor: Colors.blue.withAlpha(30),
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -33,6 +38,9 @@ class GigCard extends StatelessWidget {
                           child: Image.network(
                             item["imgUri"],
                             cacheHeight: 100,
+                            fit: BoxFit.fitHeight,
+                            width: 100,
+                            cacheWidth: 100,
                           ),
                         ),
                       ),

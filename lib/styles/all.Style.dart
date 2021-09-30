@@ -10,6 +10,12 @@ const TextStyle h2 = TextStyle();
 /// Style for h3 level text
 const TextStyle h3 = TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
 
+const TextStyle bold = TextStyle(fontWeight: FontWeight.w600);
+
+const TextStyle black = TextStyle(color: Colors.black);
+
+const Color gold = Colors.amber;
+
 /// Style for p level text
 const TextStyle p = TextStyle(
   fontWeight: FontWeight.normal,
