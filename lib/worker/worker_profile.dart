@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:handi/constants.dart';
 import 'package:handi/styles/all.Style.dart';
+import 'package:handi/worker/book_worker.dart';
 
 class WorkerProfile extends StatelessWidget {
   const WorkerProfile({
@@ -99,7 +100,7 @@ class WorkerProfile extends StatelessWidget {
                   textScaleFactor: 1.2,
                 ),
                 Text(
-                  "I don't have special tools",
+                  "Ladder, power drill, Power saw",
                   textScaleFactor: 1.1,
                 ),
               ]),
@@ -124,7 +125,7 @@ class WorkerProfile extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "I have skills, so many skills. I am a very skillful person who is a team player and knows Excel.",
+                    "I have 3 years of experience doing electrical work.\nI work with lights, outlets, wire replacements, A/C, small appliances, and more. I bring my own tools.",
                     textScaleFactor: 1.1,
                   )
                 ],
@@ -190,7 +191,10 @@ class WorkerProfile extends StatelessWidget {
                             style: h3,
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => BookWorker()));
+                            },
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.symmetric(
                                   horizontal: kDefaultPadding),
